@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PY05P2045 | Trunapushpa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- High-quality QR Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --crystal-deep: #051937;
+            --accent-cyan: #00fbff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--crystal-deep);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .syne-bold { font-family: 'Syne', sans-serif; text-transform: uppercase; }
+        
+        /* The Artistic Mesh Background you liked */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(at 0% 0%, hsla(213, 85%, 15%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(190, 100%, 25%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(185, 100%, 40%, 1) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(220, 90%, 10%, 1) 0, transparent 50%);
+            filter: blur(40px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Fluid Typography: Ensures Name stays on 1 line */
+        .one-line-name {
+            white-space: nowrap;
+            font-size: clamp(1.4rem, 6.5vw, 2.2rem);
+            letter-spacing: -0.02em;
+        }
+
+        /* The Printed Sticker Styling */
+        .sticker-box {
+            background: #051937 !important;
+            width: 380px;
+            padding: 50px 40px;
+            border-radius: 50px;
+            border: 5px solid #00fbff;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+
+        #qrcode img {
+            margin: 25px auto;
+            border-radius: 20px;
+            padding: 12px;
+            background: white !important;
+            border: 3px solid #00fbff;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 251, 255, 0.2);
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            .print-wrapper { height: 100vh; display: flex !important; align-items: center; justify-content: center; margin: 0; }
+            .sticker-box { box-shadow: none !important; border: 10px solid #051937 !important; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg no-print"></div>
+
+    <!-- HOME ENDPOINT (Default View) -->
+    <div id="home-view" class="flex flex-col items-center justify-center min-h-screen p-6">
+        <div class="w-full max-w-md space-y-8">
+            
+            <header class="text-center space-y-2">
+                <h1 class="syne-bold text-6xl md:text-7xl italic leading-none tracking-tighter">
+                    Oops!<br><span style="color: var(--accent-cyan)">My Bad.</span>
+                </h1>
+                <p class="text-lg font-light opacity-70 px-4">If my car is in your way, please let me know and I'll move it ASAP.</p>
+            </header>
+
+            <div class="glass-card p-10 space-y-8 text-center mx-auto">
+                <div class="space-y-1">
+                    <p class="text-[10px] tracking-[0.5em] opacity-40 uppercase mb-2">Vehicle Owner</p>
+                    <h2 class="syne-bold one-line-name">Trunapushpa</h2>
+                    <div class="mt-4 inline-block px-4 py-1 rounded-full border border-cyan-400/30 text-cyan-400 text-sm font-bold tracking-widest">
+                        PY05P2045
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <a href="tel:+918328570788" class="btn-hover bg-white text-slate-900 py-5 rounded-2xl font-extrabold text-xl transition-all">
+                        CALL ME
+                    </a>
+                    <a href="https://wa.me/918328570788?text=Hi%20Trunapushpa,%20your%20car%20PY05P2045%20needs%20to%20be%20moved." class="btn-hover border border-cyan-400/30 bg-cyan-400/10 text-[--accent-cyan] py-5 rounded-2xl font-extrabold text-xl transition-all">
+                        WHATSAPP
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PRINT ENDPOINT (#print) -->
+    <div id="print-view" class="hidden flex-col items-center justify-center min-h-screen p-10">
+        
+        <div class="no-print text-center mb-10">
+            <button onclick="window.print()" class="bg-[--accent-cyan] text-slate-900 px-12 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">
+                PRINT STICKER
+            </button>
+            <p class="mt-4 opacity-40 text-xs italic">Settings: Enable "Background Graphics" in your printer menu.</p>
+        </div>
+
+        <div class="print-wrapper">
+            <div class="sticker-box">
+                <h1 class="syne-bold text-5xl italic tracking-tighter mb-1 text-white">SORRY!</h1>
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-60 font-bold text-white">Blocked your way?</p>
+                
+                <div id="qrcode"></div>
+
+                <div class="space-y-6">
+                    <div class="space-y-1">
+                        <p class="text-[10px] tracking-[0.2em] uppercase opacity-50 text-white">Scan to contact</p>
+                        <h2 class="syne-bold text-white tracking-tight" style="font-size: 1.8rem; white-space: nowrap;">Trunapushpa</h2>
+                    </div>
+                    <div class="pt-6 border-t border-white/10">
+                        <p class="syne-bold text-3xl tracking-[0.2em] text-[--accent-cyan]">PY05P2045</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set your actual hosted URL here
+        const HOSTED_URL = "https://trunapushpa.github.io/PY05P2045";
+
+        function route() {
+            const isPrint = window.location.hash === '#print';
+            const homeView = document.getElementById('home-view');
+            const printView = document.getElementById('print-view');
+
+            if (isPrint) {
+                homeView.style.display = 'none';
+                printView.style.display = 'flex';
+                document.body.style.background = "#020617";
+                generateQR();
+            } else {
+                homeView.style.display = 'flex';
+                printView.style.display = 'none';
+                document.body.style.background = "var(--crystal-deep)";
+            }
+        }
+
+        function generateQR() {
+            const qrContainer = document.getElementById("qrcode");
+            qrContainer.innerHTML = "";
+            
+            // This ensures the QR ALWAYS points to the home page URL
+            new QRCode(qrContainer, {
+                text: HOSTED_URL,
+                width: 220,
+                height: 220,
+                colorDark : "#051937", 
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        window.addEventListener('hashchange', route);
+        window.onload = route;
+    </script>
+</body>
+</html>
